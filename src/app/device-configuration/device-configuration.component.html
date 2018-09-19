@@ -1,0 +1,101 @@
+<div class="container-fluid content-row d-inline-block " style="height:85vh;">
+  <div class="card h-100 panel-body" style="box-shadow: 2px 1px 7px 1px black;
+  margin-top: 10px;margin-bottom: 10px;">
+    <div class="card-body">
+      <div class="row">
+        <div class="col-sm-4" class="treeElement">
+          <div>
+            <tree-root #tree [nodes]="devices" [options]="options" (activate)="onEvent($event)">
+                <ng-template #treeNodeTemplate let-node let-index="index">
+                    <div>
+                        <img *ngIf="node.data.channelId" src = "/assets/ic_star_black_24px.svg" style="background-color: palegreen;
+                        height: 15px;
+                        width: 15px;"/>
+                        <span>{{ node.data.name }}</span>
+                    </div>
+                  </ng-template>
+            </tree-root>
+          </div>
+        </div>
+        <div *ngIf="selecetdDevice" class="col-sm-8 graphElement">
+          <div class="row padding">
+            <div class="col-sm-2 text-right">
+              Name :
+            </div>
+            <div class="col-sm-10 text-left">
+              <input type="text" [(ngModel)]="selecetdDevice.name">
+            </div>
+          </div>
+          <div class="row padding">
+            <div class="col-sm-2 text-right">
+              IP Address :
+            </div>
+            <div class="col-sm-10 text-left">
+              <div *ngIf="isAdd">
+                  <input type="text" [(ngModel)]="selecetdDevice.ipAddress">
+                </div>
+                <div *ngIf="!isAdd">{{selecetdDevice.ipAddress}}</div>
+            </div>
+          </div>
+          <div class="row padding">
+            <div class="col-sm-2 text-right">
+              Port :
+            </div>
+            <div class="col-sm-10 text-left">
+              <div *ngIf="isAdd">
+                <input type="text" [(ngModel)]="selecetdDevice.port">
+              </div>
+              <div *ngIf="!isAdd">{{selecetdDevice.port}}</div>
+            </div>
+          </div>
+          <div class="row padding">
+            <div class="col-sm-2 text-right">
+              Status :
+            </div>
+            <div class="col-sm-10 text-left">
+              {{selecetdDevice.statusName}}
+            </div>
+
+          </div>
+        </div>
+        <div *ngIf="selecetdChannel" class="col-sm-8 graphElement">
+          <div class="row padding">
+            <div class="col-sm-2 text-right">
+              On/OFF :
+            </div>
+            <div class="col-sm-10 text-left">
+              <mat-slide-toggle [ngClass]="{'red-border': selecetdChannel.isOn == null}" [checked]="selecetdChannel.isOn" [(ngModel)]="selecetdChannel.isOn"></mat-slide-toggle>
+            </div>
+          </div>
+          <div class="row">
+            <div *ngIf="selecetdChannel.subType === 8 || selecetdChannel.subType === 17 " class="col-sm-2 text-right">
+              Color :
+            </div>
+            <div class="col-sm-2 text-right" *ngIf="selecetdChannel.subType === 13">
+              Intensity :
+            </div>
+            <div class="col-sm-10 text-left">
+              <input style="width:40px" *ngIf="selecetdChannel.subType === 8 || selecetdChannel.subType === 17 " 
+              [ngClass]="{'red-border': selecetdChannel.color == null || selecetdChannel.color == 'rgb(,,)'}" 
+              [style.background]="selecetdChannel.color" [cpOutputFormat]="'rgba'" 
+              [(colorPicker)]="selecetdChannel.color" />
+              <mat-slider thumbLabel *ngIf="selecetdChannel.subType === 13"
+              [ngClass]="{'red-border': selecetdChannel.intensity == null}" 
+              tickInterval="100" min="1" max="255" [value]="selecetdChannel.intensity" 
+              [(ngModel)]="selecetdChannel.intensity"></mat-slider>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="card-footer row">
+      <div class="col-sm-2">
+        <button (click)="addDevice()" class="btn-default" type="submit">ADD</button>
+        <button class="btn-default" *ngIf="selecetdDevice && selecetdDevice.deviceId" (click)="deleteDevice()">DELETE</button>
+      </div>
+      <div class="col-sm-10 align-items-end text-right">
+        <button (click)="saveDevice()" class="btn-default ">SAVE</button>
+      </div>
+    </div>
+  </div>
+</div>

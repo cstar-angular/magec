@@ -1,0 +1,121 @@
+@import '~angular-tree-component/dist/angular-tree-component.css';
+@import '~@angular/material/prebuilt-themes/deeppurple-amber.css';
+@import "~bootstrap/dist/css/bootstrap.css";
+
+.toggle-children{
+  background-image: url("/assets/ic_folder_black_24px.svg")  !important;
+  background-color: palegreen;
+  height: 15px;
+  width: 15px;
+}
+.dark-background {
+  background-color: #eca116f5;
+}
+.light-background {
+  background-color: #ffd740;
+}
+.border{
+  box-shadow: 2px 1px 7px 1px black;
+}
+.header{
+border-radius: 0 0 calc(0.25rem - 1px) calc(0.25rem - 1px);
+box-shadow: 2px 1px 7px 1px #202325;
+background-color: #071523; 
+margin-left:15px;
+margin-right:15px;
+}
+.container-height{
+  height:auto;
+}
+.sidepanel-height{
+  height: 90vh;
+}
+
+  body {
+    /*background-color: #25282a;*/
+    font-family: 'Roboto', sans-serif;
+    /*color: #ffffff;*/
+    font-size: 14px;
+  }
+
+  .panel-body {
+    /*background-color: #202325;*/
+    
+  }
+  .navbar-brand {
+    background-image: url(/assets/LOGO.png);
+    background-position: left center;
+    background-repeat: no-repeat;
+    height: 35px;
+    width: 150px;
+    padding: 0;
+  }
+  .navbar-brand > img {
+    display: block;
+    max-height: 30px;
+  }
+
+  .navbar-default {
+    background-color: #10111c;
+    
+  }
+  #LOGO 
+  { 
+     left: 43px; 
+     top: 9px; 
+     position: absolute; 
+     width: 97px;
+     height: 28px;
+     z-index:112;
+  } 
+ .btn-default,
+.btn-default[disabled],
+.btn-default[disabled]:hover,
+fieldset[disabled] .btn-default,
+fieldset[disabled] .btn-default:hover,
+.btn-default.disabled,
+.btn-default.disabled:hover {
+  color: #ffffff;
+  background-color: #383838;
+  outline: 0;
+  border-color: transparent;
+}
+.btn-default i,
+.btn-default[disabled] i,
+.btn-default[disabled]:hover i,
+fieldset[disabled] .btn-default i,
+fieldset[disabled] .btn-default:hover i,
+.btn-default.disabled i,
+.btn-default.disabled:hover i {
+  color: #ffffff;
+}
+.btn-default:hover,
+.btn-default:active,
+.btn-default:focus,
+.btn-default:active:hover,
+.btn-default:active,
+.btn-default.active,
+.btn-default.active:hover,
+.open > .dropdown-toggle.btn-default,
+.open > .dropdown-toggle.btn-default:hover,
+.open > .dropdown-toggle.btn-default:focus {
+  color: #ffffff;
+  background-color: #454545;
+  outline: 0;
+  border-color: transparent;
+}
+.btn-default:hover i,
+.btn-default:active i,
+.btn-default:focus i,
+.btn-default:active:hover i,
+.btn-default:active i,
+.btn-default.active i,
+.btn-default.active:hover i,
+.open > .dropdown-toggle.btn-default i,
+.open > .dropdown-toggle.btn-default:hover i,
+.open > .dropdown-toggle.btn-default:focus i {
+  color: #ffffff;
+}
+.btn-default.toggle-off.active {
+  background-color: #383838;
+}

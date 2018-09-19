@@ -1,0 +1,38 @@
+<div class="container-fluid content-row d-inline-block " style="height:85vh;">
+  <div class="card h-100 panel-body" style="box-shadow: 2px 1px 7px 1px black;
+  margin-top: 10px;margin-bottom: 10px;">
+    <div class="card-body">
+      <div class="channelElement">
+        <div class="dropdown">
+          <button class="btn btn-secondary dropdown-toggle" type="button" style="width: 150px;" id="dropdownMenuButton" data-toggle="dropdown"
+            aria-haspopup="true" aria-expanded="false">
+            {{selectedMap.name}}
+          </button>
+          <div class="dropdown-menu" aria-labelledby="dropdownMenuButton">
+            <div *ngFor="let map of maps">
+              <a class="dropdown-item" (click)="onMapSelection(map)">{{map.name}}</a>
+            </div>
+          </div>
+        </div>
+        <div class="treeElement">
+          <tree-root #channelTree [state]="state" [options]="options" (moveNode)="onMoveNode($event)" (activate)="onEvent($event)"
+            [focused]="true" [nodes]="devices">
+            <ng-template #treeNodeTemplate let-node let-index="index">
+              <div>
+                <img *ngIf="node.data.channelId" src="/assets/ic_star_black_24px.svg" style="background-color: palegreen;
+                height: 15px;
+                width: 15px;" />
+                <span>{{ node.data.name }}</span>
+              </div>
+              <!--<button (click)="go($event)">Custom Action</button>-->
+            </ng-template>
+          </tree-root>
+        </div>
+      </div>
+      <div class="graphElement">
+        <app-graph-light-config-3d [selectedMap]="selectedMap">
+        </app-graph-light-config-3d>
+      </div>
+    </div>
+  </div>
+</div>

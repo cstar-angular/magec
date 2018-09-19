@@ -1,0 +1,27 @@
+.padding{
+    padding-top: 5px;
+}
+.red-border{
+    border: 1px solid red;
+  
+}
+.treeElement{
+    min-width : 250px;
+    max-width: 400px;
+    border: 2px solid #e8e8e8;
+    height: 70vh;
+    overflow: auto;
+  }
+ 
+  .graphElement{
+    width: auto;
+    float: left;
+
+  }
+  .mat-slider-horizontal {
+    height: 25px;
+    min-width: 100px;
+    margin-top: -10px;
+    margin-left: -5px;
+}
+

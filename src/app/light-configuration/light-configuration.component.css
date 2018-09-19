@@ -1,0 +1,15 @@
+.channelElement{
+    width: 200px;
+    float: left;
+  }
+  .treeElement{
+   
+    border: 2px solid #e8e8e8;
+    overflow: auto;
+    height:74vh;
+  }
+  .graphElement{
+    width: auto;
+    float: left;
+
+  }

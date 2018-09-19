@@ -1,0 +1,66 @@
+<div class="container-fluid content-row d-inline-block container-height ">
+  <div class="card h-100 panel-body">
+    <div class="card-body" style="padding: 0px;">
+      <div class="channelElement sidepanel-height light-background">
+        <div class="dropdown">
+    		<div class="col-12">
+    		 <input #searchText class="form-control mr-sm-2 search dark-background" type="search" placeholder="Search">
+	          <span id="searchclear" class="glyphicon glyphicon-remove-circle"></span>
+        	</div>
+          <button class="dark-background btn dropdown-toggle" type="button" style="width: 100%;color:black;" id="dropdownMenuButton"
+            data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+            {{selectedMap.name}}
+          </button>
+          <div class="dropdown-menu light-background" style="width: 100% ;" aria-labelledby="dropdownMenuButton">
+            <div *ngFor="let map of maps" class="dark-background" style="margin-left:5px;margin-right: 5px; margin-top:4px;box-shadow: 2px 1px 7px 1px black;">
+              <a class="dropdown-item" (click)="onMapSelection(map)">{{map.name}}</a>
+            </div>
+          </div>
+        </div>
+        
+        <div class="treeElement">
+        <div class="col-12 sub-header">
+        	 <img src="/assets/ic_star_black_24px.svg">
+        	 <h2>Dipositivos registrados</h2>
+        	 <a href="" title=""><span></span></a>
+        </div>
+          <div style="padding-top: 10px">
+            <ng-template ngFor let-node="$implicit" [ngForOf]="channels | channelFilter : searchText.value" let-i="index">
+              <div class="item-menu">
+                <div style="float: left;margin-top: 5px;">
+                  <img *ngIf="node.channelId" src="/assets/ic_star_black_24px.svg" class="light-background" style="height: 15px;
+                width: 15px;border-top: 1px solid #FAB73E;
+border-bottom: 1px solid #FAB73E;" />
+                </div>
+                <div style="height:35px;min-width: 90%; ">
+                  <div class="item-name">{{ node.name }}</div>
+                  <div style="float:left;width:50%; margin-top: 7px; padding-right: 5px;" align="right">
+                    <input *ngIf="node.subType === 8 || node.subType === 17 " style="width:25px; height: 20px;" [ngClass]="{'red-border': node.color == null || node.color == 'rgb(,,)'}"
+                      [style.background]="node.color" (colorPickerChange)="node.color=$event;onColorChange(node);" [cpOutputFormat]="'rgba'"
+                      [(colorPicker)]="node.color" />
+                    <!--<input [id]="node.id" style="vertical-align: middle;" type="color" name="favcolor" 
+               [value]="node.color" (change)="onColorChange(node)"
+                *ngIf="node.subType === 8 || node.subType === 17 "
+                style="width:40px" [ngClass]="{'red-border': node.color == null || node.color == 'rgb(,,)'}">-->
+                    <mat-slider thumbLabel style="margin-top: -10px" *ngIf="node.subType === 13" tickInterval="100" min="1" max="255" [value]="node.intensity"
+                      [(ngModel)]="node.intensity" (change)="onSliderChange(node)"></mat-slider>
+                    <mat-slide-toggle [id]="node.id" [ngClass]="{'red-border': node.isOn==null}" (change)="onToggleChange(node)" [checked]="node.isOn"
+                      [(ngModel)]="node.isOn">
+                    </mat-slide-toggle>
+                  </div>
+
+                </div>
+
+              </div>
+            </ng-template>
+          </div>
+        </div>
+      </div>
+      <div *ngIf="channels" class="graphElement">
+        <app-graph-light-3d (saveChannelChange)="saveChannelChange($event)" [selectedMap]="selectedMap" [updatedChannel]="updatedChannel"
+          [addedChannel]="addedChannel" [deletedChannel]="deletedChannel" [channelList]="channels">
+        </app-graph-light-3d>
+      </div>
+    </div>
+  </div>
+</div>

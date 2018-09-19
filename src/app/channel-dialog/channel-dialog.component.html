@@ -1,0 +1,24 @@
+<h1 mat-dialog-title>Update Channel</h1>
+<div mat-dialog-content>
+  <div class="row padding">
+    <div class="col-sm-4 text-right">
+      On/OFF :
+    </div>
+    <div class="col-sm-8 text-left" >
+      <mat-slide-toggle [ngClass]="{'red-border': selecetdChannel.isOn==null}" [checked]="selecetdChannel.isOn" [(ngModel)]="selecetdChannel.isOn"></mat-slide-toggle>
+    </div>
+  </div>
+  <div class="row">
+    <div class="col-sm-4 text-right">
+      Color :
+    </div>
+    <div class="col-sm-8 text-left">
+      <input style="width:40px" [ngClass]="{'red-border': selecetdChannel.color == null || selecetdChannel.color == 'rgb(,,)'}" [style.background]="selecetdChannel.color" [cpOutputFormat]="'rgba'" 
+      [(colorPicker)]="selecetdChannel.color"/>
+    </div>
+  </div>
+</div>
+<div mat-dialog-actions class="text-right">
+  <button mat-button class="btn-default" [mat-dialog-close]="selecetdChannel" cdkFocusInitial>Save</button>
+  <button style="margin-left: 5px" mat-button class="btn-default" (click)="onCancelClick()">Cancel</button>
+</div>

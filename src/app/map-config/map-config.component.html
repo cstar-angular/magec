@@ -1,0 +1,76 @@
+<div class="container-fluid content-row d-inline-block " style="height:85vh;">
+  <div class="card h-100 panel-body" style="box-shadow: 2px 1px 7px 1px black;
+    margin-top: 10px;margin-bottom: 10px;">
+    <!--<form #imageForm=ngForm (ngSubmit)="saveMap()">-->
+      <div class="card-body">
+        <div class="row">
+          <div class="col-sm-2" style="overflow: scroll;height:70vh;">
+            <div class="treeElement" *ngIf="maps">
+              <tree-root #mapsTree (activate)="onEvent($event)" [focused]="true" [nodes]="maps">
+                <ng-template #treeNodeTemplate let-node let-index="index">
+                  <div>
+                    <img *ngIf="node.data.channelId" src="/assets/ic_star_black_24px.svg" style="background-color: palegreen;
+                      height: 15px;
+                      width: 15px;" />
+                    <span>{{ node.data.name }}</span>
+                  </div>
+                </ng-template>
+              </tree-root>
+            </div>
+          </div>
+          <div *ngIf="selectedMap" class="col-sm-10">
+            <div class="row padding">
+              <div class="col-sm-2 text-right">
+                ID :
+              </div>
+              <div class="col-sm-10 text-left">
+                {{selectedMap.id}}
+              </div>
+            </div>
+            <div class="row padding">
+              <div class="col-sm-2 text-right">
+                Name :
+              </div>
+              <div class="col-sm-10 text-left">
+                <input type="text" [(ngModel)]="selectedMap.name">
+              </div>
+            </div>
+            <div class="row padding">
+              <div class="col-sm-2 text-right">
+                Description :
+              </div>
+              <div class="col-sm-10 text-left">
+                <input type="text" [(ngModel)]="selectedMap.description">
+              </div>
+            </div>
+            <div class="row padding">
+              <div class="col-sm-2 text-right">
+                Upload Image :
+              </div>
+              <div class="col-sm-10 text-left">
+                <input type="file" #Image accept="image/*" (change)="handleFileInput($event.target.files)">
+              </div>
+            </div>
+            <div class="row padding">
+              <div class="col-sm-2 text-right">
+
+              </div>
+              <div class="col-sm-10 text-left" *ngIf="imageUrl">
+                <img [src]="imageUrl" style="width:250px;height:200px">
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="card-footer row">
+        <div class="col-sm-2">
+          <button (click)="addMap()" class="btn-default" type="submit">ADD</button>
+          <button class="btn-default" *ngIf="selectedMap && selectedMap.id" (click)="deleteMap()">DELETE</button>
+        </div>
+        <div class="col-sm-10 align-items-end text-right">
+          <button (click)='saveMap()' class="btn-default ">SAVE</button>
+        </div>
+      </div>
+    <!--</form>-->
+  </div>
+</div>
